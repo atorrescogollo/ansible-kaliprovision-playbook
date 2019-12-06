@@ -1,0 +1,9 @@
+#
+# Tasks: Apt Packages Installation
+#
+
+- name: Install pkgs via apt
+  apt:
+    pkg: "{{ apt_packages }}"
+    state: present
+    force_apt_get: True

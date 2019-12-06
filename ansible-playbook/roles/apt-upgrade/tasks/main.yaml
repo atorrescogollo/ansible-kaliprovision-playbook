@@ -1,0 +1,12 @@
+#
+# Tasks: Upgrade packages through apt pkg manager
+#
+
+- name: Update and upgrade apt packages
+  apt:
+    update_cache: yes
+    state: latest
+    upgrade: dist
+    autoclean: yes
+    autoremove: yes
+    force_apt_get: True

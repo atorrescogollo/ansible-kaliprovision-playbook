@@ -1,0 +1,7 @@
+#
+# Default Vars
+#
+
+gitconfig:
+  email: git@localhost
+  name: git

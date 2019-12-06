@@ -1,0 +1,12 @@
+#
+# Master Playbook
+#
+
+- name: Setup kali
+  hosts: kali
+  roles:
+    - apt-upgrade
+    - install-pkgs-apt
+    - install-pkgs-git
+    - install-pkgs-remote
+    - gen-personal-conf

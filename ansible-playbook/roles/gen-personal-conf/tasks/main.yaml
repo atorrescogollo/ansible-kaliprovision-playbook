@@ -1,0 +1,15 @@
+#
+# Tasks: Generate config for VIM and Git
+#
+
+
+- name: VIM Config (.vimrc)
+  copy:
+    src: vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+
+- name: Git Config (.gitconfig)
+  template:
+    src: gitconfig
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+
