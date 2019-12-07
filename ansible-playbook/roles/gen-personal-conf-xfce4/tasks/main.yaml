@@ -1,0 +1,23 @@
+#
+# Tasks: Generate config for XFCE4
+#
+
+- xml:
+    path: "{{ ansible_env.HOME }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    xpath: /channel[@name='xfce4-keyboard-shortcuts']/property[@name='commands']/property[@name='custom']/property[@name='<Primary><Shift><Alt>t']
+    #xpath: /channel[@name='xfce4-keyboard-shortcuts']/property[@name='commands']/property[@name='custom']/property
+    count: yes
+  register: mayuscrtlaltt
+
+- name: Set keyboard shortcuts
+  xml:
+    path: "{{ ansible_env.HOME }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    #xpath: /channel[@name='xfce4-keyboard-shortcuts']/property[@name='commands']/property[@name='custom']/property[@name='<Primary><Shift><Alt>t']
+    xpath: /channel[@name='xfce4-keyboard-shortcuts']/property[@name='commands']/property[@name='custom']
+    pretty_print: yes
+    add_children:
+      - property:
+          name: <Primary><Shift><Alt>t
+          type: string
+          value: /usr/bin/qterminal -e tmux
+  when: mayuscrtlaltt.count == 0

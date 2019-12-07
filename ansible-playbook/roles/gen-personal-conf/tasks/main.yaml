@@ -1,5 +1,5 @@
 #
-# Tasks: Generate config for VIM and Git
+# Tasks: Generate config for VIM and Git, and call XFCE4 role
 #
 
 
@@ -13,3 +13,11 @@
     src: gitconfig
     dest: "{{ ansible_env.HOME }}/.gitconfig"
 
+
+- stat:
+    path: "{{ ansible_env.HOME }}/.config/xfce4"
+  register: xfceconfdir
+
+- include_role:
+    name: gen-personal-conf-xfce4
+  when: xfceconfdir.stat.isdir is defined and xfceconfdir.stat.isdir
