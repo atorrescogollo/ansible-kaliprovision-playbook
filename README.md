@@ -1,1 +1,1 @@
-# kali-provision-ansible
+# kali-provision-ansible [DEPRECATED]
